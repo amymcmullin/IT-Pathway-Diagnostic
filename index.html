@@ -264,6 +264,19 @@ details.allpaths[open] summary::after{content:"−"}
 .keytable td,.keytable th{border:1px solid var(--ink3);padding:5px 7px;text-align:left}
 .keytable th{background:#eee}
 
+/* ---------- admissions chat ---------- */
+#askbot{margin-top:64px;padding-top:8px}
+.botcard{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:3px;overflow:hidden;margin:22px 0 16px;box-shadow:0 1px 0 var(--rule2),0 10px 28px -18px rgba(28,26,36,.35)}
+.bothead{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--rule);background:var(--paper)}
+.botdot{width:8px;height:8px;border-radius:50%;background:var(--both);box-shadow:0 0 0 3px var(--both-tint)}
+.botname{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em}
+.bottag{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--soft);padding:3px 8px;border-radius:2px}
+.botframe{display:block;width:100%;height:560px;border:0;background:var(--card)}
+.botnotes{list-style:none;display:grid;gap:8px;max-width:66ch}
+.botnotes li{font-size:13.5px;color:var(--ink2);padding-left:14px;border-left:2px solid var(--rule)}
+.botnotes b{color:var(--ink);font-weight:600}
+@media(max-width:640px){.botframe{height:480px}.bothead{padding:10px 14px}}
+
 @media print{
   body{background:#fff;padding:0;font-size:11.5px}
   .noprint{display:none!important}
@@ -354,6 +367,27 @@ details.allpaths[open] summary::after{content:"−"}
 
 <!-- ============ PAPER ============ -->
 <section id="paper"></section>
+
+<!-- ============ ADMISSIONS CHAT ============ -->
+<section id="askbot" class="noprint" aria-labelledby="askbot-h">
+  <div class="slabel">Questions about iTECH</div>
+  <h2 id="askbot-h">Ask the iTECH admissions assistant</h2>
+  <p class="lede">Wondering what a program costs, how long it takes, or how to apply? Type your question here. This is an AI chatbot for Immokalee Technical College admissions, built with Microsoft Copilot Studio.</p>
+  <div class="botcard">
+    <div class="bothead">
+      <span class="botdot" aria-hidden="true"></span>
+      <span class="botname">iTECH Admissions Assistant</span>
+      <span class="bottag">AI chat</span>
+    </div>
+    <iframe class="botframe" src="https://copilotstudio.microsoft.com/environments/Default-59943c4a-6253-4d0d-8a98-fef50303d34b/bots/cr35a_itechadmissionschatbot_GFM9jU/webchat?__version__=2&amp;enableFileAttachment=false&amp;cliAgent=true" title="iTECH admissions chatbot" loading="lazy"></iframe>
+  </div>
+  <ul class="botnotes">
+    <li><b>It's separate from the diagnostic.</b> Your diagnostic answers aren't shared with it, and it's hidden while you take the test.</li>
+    <li><b>What you type is sent to Microsoft.</b> Unlike the diagnostic, chat messages leave your browser, so don't enter personal details like your student ID, birth date or phone number.</li>
+    <li><b>It can be wrong.</b> Check dates, costs and requirements with the iTECH admissions office before you act on them.</li>
+  </ul>
+</section>
+
 
 </div>
 
@@ -661,7 +695,7 @@ const ans2=new Array(Q2FULL.length).fill(null);
 const $=s=>document.querySelector(s);
 document.getElementById('mastdate').textContent=new Date().toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
 
-function show(id){['intro','assess','inter','results','paper'].forEach(s=>{$('#'+s).style.display = (s===id?'block':'none')});}
+function show(id){['intro','assess','inter','results','paper'].forEach(s=>{$('#'+s).style.display = (s===id?'block':'none')}); $('#askbot').style.display = (id==='intro'||id==='results') ? 'block' : 'none';}
 
 document.querySelectorAll('.seg').forEach(b=>b.onclick=()=>setLen(+b.dataset.len));
 setLen(8);
@@ -982,6 +1016,5 @@ function gridTable(from,to,opts){
   return h+'</table>';
 }
 </script>
-  <!DOCTYPE html><html style="height: 100%;"><body style="height: 100%; margin: 0;"><iframe src="https://copilotstudio.microsoft.com/environments/Default-59943c4a-6253-4d0d-8a98-fef50303d34b/bots/cr35a_itechadmissionschatbot_GFM9jU/webchat?__version__=2&enableFileAttachment=false&cliAgent=true" frameborder="0" style="width: 100%; height: 100%; border: 0;"></iframe></body></html>
 </body>
 </html>
